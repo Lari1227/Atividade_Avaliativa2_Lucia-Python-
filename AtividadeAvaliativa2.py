@@ -19,132 +19,141 @@ def gerar_id_pedido():
 
 
 def menu():
+    opc = 0
 
-    barra()
-    print(" Sistema de logística urbana FluxoNorte ")
-    barra()
+    while opc != 6:
+        barra()
+        print(" Sistema de logística urbana FluxoNorte ")
+        barra()
 
-    print(f"\n1-Cadastro de Entregadores/Pedidos\n2-Atualizar Pedidos\n3-Consulta\n4-Relatórios\n5-Desenvolvedores\n6-Encerrar Sistema")
+        print("\n1-Cadastro de Entregadores/Pedidos")
+        print("2-Atualizar Pedidos")
+        print("3-Consulta")
+        print("4-Relatórios")
+        print("5-Desenvolvedores")
+        print("6-Encerrar Sistema")
 
-    try:
-        opc = int(input("--> "))
-    except ValueError:
-        print("Digite apenas números!")
-        return menu()
+        try:
+            opc = int(input("--> "))
+        except ValueError:
+            print("Digite apenas números!")
+            opc=0
 
-    match opc:
-
-        case 1:
+        if opc == 1:
             menu_cadastro()
-            return menu()
 
-        case 2:
+        elif opc == 2:
             menu_atualizacao()
-            return menu()
 
-        case 3:
+        elif opc == 3:
             menu_consultas()
-            return menu()
 
-        case 4:
+        elif opc == 4:
             relatorios()
-            return menu()
 
-        case 5:
-            print(f"\nJúlia Andrade Guarnieri\nLarissa Souza Quito Sampaio\nPedro Henrique Sanches Agatti Godoy")
+        elif opc == 5:
+            print("\nJúlia Andrade Guarnieri")
+            print("Larissa Souza Quito Sampaio")
+            print("Pedro Henrique Sanches Agatti Godoy")
             input("Pressione ENTER...")
-            return menu()
 
-        case 6:
+        elif opc == 6:
             print("Sistema encerrado.")
-            return False
 
-        case _:
+        else:
             print("Opção inválida!")
-            return menu()
 
 def menu_cadastro():
+    opc = 0
 
-    print("\n1-Cadastrar Entregador\n2-Cadastrar Pedido\n3-Voltar")
+    while opc != 3:
+        print("\n1-Cadastrar Entregador")
+        print("2-Cadastrar Pedido")
+        print("3-Voltar")
 
-    try:
-        opc = int(input("--> "))
-    except ValueError:
-        print("Digite apenas números!")
-        return menu_cadastro()
+        try:
+            opc = int(input("--> "))
+        except ValueError:
+            print("Digite apenas números!")
+            opc=0
 
-    match opc:
-
-        case 1:
+        if opc == 1:
             cadastro_entregador()
-            return menu_cadastro()
 
-        case 2:
+        elif opc == 2:
             cadastro_pedido()
-            return menu_cadastro()
 
-        case 3:
-            return
+        elif opc == 3:
+            print("Voltando...")
 
-        case _:
+        else:
             print("Opção inválida!")
-            return menu_cadastro()
 
 
 def menu_atualizacao():
+    opc = ""
 
-    print(f"\n1-Alterar Status\n2-Cancelar Pedido\n3-Associar Entregador\n4-Remover Entregador\n5-Voltar")
+    while opc != "5":
+        print("\n1-Alterar Status")
+        print("2-Cancelar Pedido")
+        print("3-Associar Entregador")
+        print("4-Remover Entregador")
+        print("5-Voltar")
 
-    opc = input("--> ")
+        opc = input("--> ")
 
-    match opc:
-
-        case "1":
+        if opc == "1":
             alterar_status()
 
-        case "2":
+        elif opc == "2":
             cancelar_pedido()
 
-        case "3":
+        elif opc == "3":
             associar_entregador()
 
-        case "4":
+        elif opc == "4":
             remover_entregador()
 
-        case "5":
-            return
+        elif opc == "5":
+            print("Voltando...")
 
-        case _:
+        else:
             print("Opção inválida!")
 
 
+
 def menu_consultas():
+    opc = ""
 
-    print(f"\n1-Pedidos Pendentes\n2 Pedidos Entregues\n3-Buscar Pedido por ID\n4-Entregadores Disponíveis\n5-Entregas por Entregador\n6-Voltar")
+    while opc != "6":
+        print("\n1-Pedidos Pendentes")
+        print("2-Pedidos Entregues")
+        print("3-Buscar Pedido por ID")
+        print("4-Entregadores Disponíveis")
+        print("5-Entregas por Entregador")
+        print("6-Voltar")
 
-    opc = input("--> ")
+        opc = input("--> ")
 
-    match opc:
-
-        case "1":
+        if opc == "1":
             listar_pendentes()
 
-        case "2":
+        elif opc == "2":
             listar_entregues()
 
-        case "3":
+        elif opc == "3":
             buscar_pedido()
 
-        case "4":
+        elif opc == "4":
             entregadores_disponiveis()
 
-        case "5":
+        elif opc == "5":
             entregas_entregador()
 
-        case "6":
-            return
+        elif opc == "6":
+            print("Voltando...")
 
-        case _:
+        else:
             print("Opção inválida!")
 
 
