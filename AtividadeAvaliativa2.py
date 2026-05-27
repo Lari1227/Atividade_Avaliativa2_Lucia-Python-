@@ -11,7 +11,7 @@ def barra():
 
 def gerar_id_pedido():
     while True:
-        numero = random.randint(1000, 9999)
+        numero=random.randint(1000, 9999)
         id_pedido="A" + str(numero)
 
         if id_pedido not in pedidos:
