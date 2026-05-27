@@ -10,12 +10,14 @@ def barra():
 
 
 def gerar_id_pedido():
-    while True:
+    valido=False
+    while valido==False:
         numero=random.randint(1000, 9999)
-        id_pedido="A" + str(numero)
-
+        id_pedido="A" + str(numero)       
         if id_pedido not in pedidos:
-            return id_pedido
+            valido=True
+    
+    return id_pedido 
 
 
 def menu():
