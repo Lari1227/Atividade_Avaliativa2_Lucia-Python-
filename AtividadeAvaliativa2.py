@@ -448,7 +448,7 @@ def relatorios():
 
         qtd=len(dados["pedidos"])
 
-        if qtd > maior:
+        if qtd>maior:
             maior=qtd
             nome=dados["nome"]
 
