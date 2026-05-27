@@ -195,7 +195,7 @@ def cadastro_entregador():
 
 def cadastro_pedido():
 
-    if len(entregadores) == 0:
+    if len(entregadores)==0:
         print("Cadastre um entregador primeiro!")
         return
 
@@ -211,7 +211,7 @@ def cadastro_pedido():
 
     while prioridade not in ["Alta", "Normal"]:
 
-        prioridade = input("Prioridade (Alta/Normal): ").capitalize()
+        prioridade=input("Prioridade (Alta/Normal): ").capitalize()
 
         if prioridade not in ["Alta", "Normal"]:
             print("Prioridade inválida!")
