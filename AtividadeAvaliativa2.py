@@ -10,20 +10,26 @@ def barra():
 
 
 def gerar_id_pedido():
-    valido=False
-    while valido==False:
-        numero=random.randint(1000, 9999)
-        id_pedido="A" + str(numero)       
+
+    valido = False
+
+    while valido == False:
+
+        numero = random.randint(1000, 9999)
+
+        id_pedido = "A" + str(numero)
+
         if id_pedido not in pedidos:
-            valido=True
-    
-    return id_pedido 
+
+            valido = True
+
+    return id_pedido
 
 
 def menu():
-    opc=0
+    opc = ""
 
-    while opc !=6:
+    while opc != "6":
         barra()
         print(" Sistema de logística urbana FluxoNorte ")
         barra()
@@ -35,57 +41,50 @@ def menu():
         print("5-Desenvolvedores")
         print("6-Encerrar Sistema")
 
-        try:
-            opc=int(input("--> "))
-        except ValueError:
-            print("Digite apenas números!")
-            opc=0
+        opc = input("--> ")
 
-        if opc==1:
+        if opc == "1" or opc == " 1" or opc == "1 ":
             menu_cadastro()
 
-        elif opc==2:
+        elif opc == "2" or opc == " 2" or opc == "2 ":
             menu_atualizacao()
 
-        elif opc==3:
+        elif opc == "3" or opc == " 3" or opc == "3 ":
             menu_consultas()
 
-        elif opc==4:
+        elif opc == "4" or opc == " 4" or opc == "4 ":
             relatorios()
 
-        elif opc==5:
+        elif opc == "5" or opc == " 5" or opc == "5 ":
+
             print("\nJúlia Andrade Guarnieri")
             print("Larissa Souza Quito Sampaio")
             print("Pedro Henrique Sanches Agatti Godoy")
             input("Pressione ENTER...")
 
-        elif opc==6:
+        elif opc == "6" or opc == " 6" or opc == "6 ":
             print("Sistema encerrado.")
 
         else:
             print("Opção inválida!")
 
 def menu_cadastro():
-    opc=0
+    opc = ""
 
-    while opc !=3:
+    while opc != "3":
         print("\n1-Cadastrar Entregador")
         print("2-Cadastrar Pedido")
         print("3-Voltar")
 
-        try:
-            opc=int(input("--> "))
-        except ValueError:
-            print("Digite apenas números!")
-            opc=0
+        opc = input("--> ")
 
-        if opc==1:
+        if opc == "1" or opc == " 1" or opc == "1 ":
             cadastro_entregador()
 
-        elif opc==2:
+        elif opc == "2" or opc == " 2" or opc == "2 ":
             cadastro_pedido()
 
-        elif opc==3:
+        elif opc == "3" or opc == " 3" or opc == "3 ":
             print("Voltando...")
 
         else:
@@ -104,55 +103,58 @@ def menu_atualizacao():
 
         opc=input("--> ")
 
-        if opc=="1":
+        if opc == "1" or opc == " 1" or opc == "1 ":
             alterar_status()
 
-        elif opc=="2":
+        elif opc == "2" or opc == " 2" or opc == "2 ":
             cancelar_pedido()
 
-        elif opc=="3":
+        elif opc == "3" or opc == " 3" or opc == "3 ":
             associar_entregador()
 
-        elif opc=="4":
+        elif opc == "4" or opc == " 4" or opc == "4 ":
             remover_entregador()
 
-        elif opc=="5":
+        elif opc == "5" or opc == " 5" or opc == "5 ":
             print("Voltando...")
 
         else:
             print("Opção inválida!")
 
 
-
 def menu_consultas():
     opc=""
 
-    while opc!="6":
+    while opc != "7":
         print("\n1-Pedidos Pendentes")
         print("2-Pedidos Entregues")
         print("3-Buscar Pedido por ID")
         print("4-Entregadores Disponíveis")
         print("5-Entregas por Entregador")
-        print("6-Voltar")
+        print("6-Listar Todos os Pedidos")
+        print("7-Voltar")
 
         opc=input("--> ")
 
-        if opc=="1":
+        if opc == "1" or opc == " 1" or opc == "1 ":
             listar_pendentes()
 
-        elif opc=="2":
+        elif opc == "2" or opc == " 2" or opc == "2 ":
             listar_entregues()
 
-        elif opc=="3":
+        elif opc == "3" or opc == " 3" or opc == "3 ":
             buscar_pedido()
 
-        elif opc=="4":
+        elif opc == "4" or opc == " 4" or opc == "4 ":
             entregadores_disponiveis()
 
-        elif opc=="5":
+        elif opc == "5" or opc == " 5" or opc == "5 ":
             entregas_entregador()
 
-        elif opc=="6":
+        elif opc == "6" or opc == " 6" or opc == "6 ":
+            listar_todos_pedidos()
+
+        elif opc == "7" or opc == " 7" or opc == "7 ":
             print("Voltando...")
 
         else:
@@ -170,25 +172,42 @@ def cadastro_entregador():
 
     nome=input("Nome do entregador: ")
 
-    for dados in entregadores.values():
+    if nome == "":
+        print("Nome inválido!")
+        return
 
-        if dados["nome"].lower() == nome.lower():
-            print("Entregador já cadastrado!")
+    for id_e in entregadores:
+        if entregadores[id_e]["nome"].lower() == nome.lower():
+            print("Já existe esse entregador!")
             return
-
-    veiculo=""
-    while veiculo not in ["carro", "van", "moto"]:
-        veiculo=input("Veículo (carro/van/moto): ").lower()
-
-        if veiculo not in ["carro", "van", "moto"]:
-            print("Veículo inválido!")
-
-    disponibilidade=""
-    while disponibilidade not in ["sim", "não", "nao", "s", "n"]:
-        disponibilidade=input("Disponível? (sim/não): ").lower()
-
-        if disponibilidade not in ["sim", "não", "nao", "s", "n"]:
-            print("Resposta inválida!")
+    
+    print("\n Escolha um veículo: ")
+    print("1-Carro")
+    print("2-Van")
+    print("3-Moto")
+    
+    opc_veiculo = input("--> ")
+    if opc_veiculo == "1":
+        veiculo = "carro"
+    elif opc_veiculo == "2":
+        veiculo = "van"
+    elif opc_veiculo == "3":
+        veiculo = "moto"
+    else:
+        print("Opção inválida!")
+        return
+    
+    print("\nDisponibilidade:")
+    print("1-Sim")
+    print("2-Não")
+    opc_disp = input("--> ")
+    if opc_disp == "1" or opc_disp == " 1" or opc_disp == "1 ":
+        disponibilidade = "sim"
+    elif opc_disp == "2" or opc_disp == " 2" or opc_disp == "2 ":
+        disponibilidade = "não"
+    else:
+        print("Opção inválida!")
+        return
 
     entregadores[id_entregador]={"nome": nome, "veiculo": veiculo,"pedidos": [],"disponibilidade": disponibilidade}
 
@@ -205,28 +224,54 @@ def cadastro_pedido():
 
     print(f"\nID do pedido: {id_pedido}")
 
-    cliente=input("Nome do cliente: ")
+    cliente = ""
+
+    while cliente == "":
+        cliente = input("Nome do cliente: ")
 
     endereco=input("Endereço: ")
 
-    prioridade=""
+    print("\nEscolha a prioridade:")
+    print("1-Alta")
+    print("2-Normal")
 
-    while prioridade not in ["Alta", "Normal"]:
+    opc_prioridade = input("--> ")
 
-        prioridade=input("Prioridade (Alta/Normal): ").capitalize()
+    if opc_prioridade == "1" or opc_prioridade == " 1" or opc_prioridade == "1 ":
+        prioridade = "Alta"
 
-        if prioridade not in ["Alta", "Normal"]:
-            print("Prioridade inválida!")
+    elif opc_prioridade == "2" or opc_prioridade == " 2" or opc_prioridade == "2 ":
+        prioridade = "Normal"
+
+    else:
+        print("Opção inválida!")
+        return
 
     descricao=input("Descrição do pedido: ")
 
-    status=""
+    print("\nEscolha o status:")
+    print("1-Pendente")
+    print("2-Em Rota")
+    print("3-Entregue")
+    print("4-Cancelado")
 
-    while status not in ["Pendente", "Em Rota", "Entregue", "Cancelado"]:
-        status = input("Status (Pendente/Em Rota/Entregue/Cancelado): ").title()
+    opc_status = input("--> ")
 
-        if status not in ["Pendente", "Em Rota", "Entregue", "Cancelado"]:
-            print("Status inválido!")
+    if opc_status == "1" or opc_status == " 1" or opc_status == "1 ":
+        status = "Pendente"
+
+    elif opc_status == "2" or opc_status == " 2" or opc_status == "2 ":
+        status = "Em Rota"
+
+    elif opc_status == "3" or opc_status == " 3" or opc_status == "3 ":
+        status = "Entregue"
+
+    elif opc_status == "4" or opc_status == " 4" or opc_status == "4 ":
+        status = "Cancelado"
+
+    else:
+        print("Opção inválida!")
+        return
 
     id_entregador=input("ID do entregador: ")
 
@@ -238,11 +283,33 @@ def cadastro_pedido():
         print("Esse entregador já atingiu o limite de pedidos!")
         return
 
-    pedidos[id_pedido]={ "cliente": cliente, "endereco": endereco, "prioridade": prioridade,"descricao": descricao,"status": status,"entregador": id_entregador}
+    pedidos[id_pedido] = {
+        "cliente": cliente,
+        "endereco": endereco,
+        "prioridade": prioridade,
+        "descricao": descricao,
+        "status": status,
+        "entregador": id_entregador
+    }
 
-    entregadores[id_entregador]["pedidos"].append(id_pedido)
+    if id_pedido not in entregadores[id_entregador]["pedidos"]:
+        entregadores[id_entregador]["pedidos"].append(id_pedido)
 
     print("Pedido cadastrado com sucesso!")
+
+def listar_todos_pedidos():
+
+    print("\nTODOS OS PEDIDOS\n")
+
+    if len(pedidos) == 0:
+        print("Nenhum pedido cadastrado.")
+        return
+
+    for id_pedido, dados in pedidos.items():
+
+        print(
+            id_pedido, "-", dados["cliente"], "-", dados["status"]
+        )
 
 def alterar_status():
 
@@ -291,9 +358,8 @@ def cancelar_pedido():
 
 
 def associar_entregador():
-
-    id_pedido=input("ID do pedido: ")
-    id_entregador=input("ID do entregador: ")
+    id_pedido = input("ID do pedido: ")
+    id_entregador = input("ID do entregador: ")
 
     if id_pedido not in pedidos:
         print("Pedido inexistente!")
@@ -302,10 +368,15 @@ def associar_entregador():
     if id_entregador not in entregadores:
         print("Entregador inexistente!")
         return
+    
+    for id_e in entregadores:
+        if id_pedido in entregadores[id_e]["pedidos"]:
+            entregadores[id_e]["pedidos"].remove(id_pedido)
 
     pedidos[id_pedido]["entregador"]=id_entregador
 
-    entregadores[id_entregador]["pedidos"].append(id_pedido)
+    if id_pedido not in entregadores[id_entregador]["pedidos"]:
+        entregadores[id_entregador]["pedidos"].append(id_pedido)
 
     print("Entregador associado!")
 
@@ -420,8 +491,11 @@ def relatorios():
     entregues=0
     cancelados= 0
     alta = 0
+    em_rota = 0
 
-    for dados in pedidos.values():
+    for id_pedido in pedidos:
+
+        dados = pedidos[id_pedido]
 
         if dados["status"]=="Pendente":
             pendentes += 1
@@ -429,11 +503,16 @@ def relatorios():
         elif dados["status"]=="Entregue":
             entregues += 1
 
-        elif dados["status"]=="Cancelado":
-            cancelados+=1
+        elif dados["status"] == "Cancelado":
+            cancelados += 1
+        
+        elif dados["status"] == "Em Rota":
+             em_rota += 1
 
-        if dados["prioridade"]=="Alta":
-            alta+=1
+        if dados["prioridade"] == "Alta":
+            alta += 1
+        
+
 
     print("\nRELATÓRIO OPERACIONAL\n")
 
@@ -442,11 +521,13 @@ def relatorios():
     print(f"Pedidos entregues: {entregues}")
     print(f"Pedidos cancelados: {cancelados}")
     print(f"Pedidos alta prioridade: {alta}")
+    print(f"Pedidos em rota: {em_rota}")
+    maior = 0
+    nome = ""
 
-    maior=0
-    nome=""
+    for id_entregador in entregadores:
 
-    for dados in entregadores.values():
+        dados = entregadores[id_entregador]
 
         qtd=len(dados["pedidos"])
 
