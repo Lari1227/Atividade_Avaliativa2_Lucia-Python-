@@ -441,8 +441,8 @@ def relatorios():
     print(f"Pedidos cancelados: {cancelados}")
     print(f"Pedidos alta prioridade: {alta}")
 
-    maior = 0
-    nome = ""
+    maior=0
+    nome=""
 
     for dados in entregadores.values():
 
