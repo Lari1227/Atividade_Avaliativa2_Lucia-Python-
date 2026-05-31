@@ -415,7 +415,7 @@ def listar_pendentes():
 
     if encontrou==False:
         print("Nenhum pedido pendente.")
-x
+
 
 def listar_entregues():
 
