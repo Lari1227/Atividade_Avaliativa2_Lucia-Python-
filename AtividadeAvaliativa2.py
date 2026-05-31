@@ -318,6 +318,9 @@ def alterar_status():
     if id_pedido not in pedidos:
         print("Pedido não encontrado!")
         return
+    if pedidos[id_pedido]["status"] == "Cancelado":
+        print("Pedidos cancelados não podem ser reativados!")
+        return
 
     print("\n1-Pendente\n2-Em Rota\n3-Entregue\n4-Cancelado")
 
@@ -367,6 +370,10 @@ def associar_entregador():
 
     if id_entregador not in entregadores:
         print("Entregador inexistente!")
+        return
+        
+    if len(entregadores[id_entregador]["pedidos"]) >= 5:
+        print("Esse entregador já atingiu o limite de pedidos!")
         return
     
     for id_e in entregadores:
